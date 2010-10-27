@@ -46,20 +46,18 @@ function instapaper_perm() {
 /**
  * Implementation of hook_link().
  */
-function instapaper_link($type, $object, $teaser = FALSE) {
-  $links = array();
-  
+function instapaper_link($type, $node = NULL, $teaser = FALSE) {
   if ($type == 'node' && user_access('use instapaper')) {
     if (variable_get('instapaper_instapaper_this_where', 'links') == 'links') {
       if (in_array($node->type, variable_get('instapaper_instapaper_this_node_types', array()), TRUE)) {
         $links['instapaper_link'] = array(
-            'title' => t('instapaper'),
-            'href' => url('node/'. $node->nid, array('absolute' => TRUE)),
-            'attributes' => array(
-              'class' => 'instapaper-link', // This is the class that is processed.
-              'title' => check_plain($node->title),
-              'rel' => 'nofollow',
-            ),
+          'title' => t('instapaper'),
+          'href' => url('node/'. $node->nid, array('absolute' => TRUE)),
+          'attributes' => array(
+            'class' => 'instapaper-link', // This is the class that is processed.
+            'title' => check_plain($node->title),
+            'rel' => 'nofollow',
+          ),
         );
       }
     }
@@ -84,6 +82,7 @@ function instapaper_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
           if (in_array($node->type, variable_get('instapaper_instapaper_this_node_types', array()), TRUE)) {
             // Create the instapaper element.
             $instapaper = theme('instapaper', $node->title, url('node/'. $node->nid, array('absolute' => TRUE)));
+            dpm($instapaper);
             $node->content['instapaper_instapaper_this'] = array(
               '#value' => $instapaper,
               '#weight' => variable_get('instapaper_instapaper_weight', 0),
