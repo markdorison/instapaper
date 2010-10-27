@@ -12,8 +12,8 @@ function instapaper_help($path, $arg) {
   switch ($path) {
     case 'admin/help#instapaper':
       return t('Provides functionality to interface with the Instapaper web service to allow offline reading.');
-    case 'admin/settings/instapaper':
-      return t('Below provides the settings for interfacing with the <a href="@instapaper">Instapaper</a> web service.', array('@instapaper' => 'http://instapaper.com')))
+    case 'admin/settings/service_links/instapaper':
+      return t('Below provides the settings for interfacing with the <a href="@instapaper">Instapaper</a> web service. You can add the \'Read Later\' link in the <a href="@services">services tab</a>', array('@instapaper' => 'http://instapaper.com', '@services' => url('admin/settings/service_links/services')));
   }
 }
 
