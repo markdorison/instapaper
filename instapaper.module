@@ -62,7 +62,7 @@ function instapaper_perm() {
 /**
  * Implementation of hook_block().
  */
-function instapaper_block($op = 'list', $delta = 0, $edit = array()) {
+/* function instapaper_block($op = 'list', $delta = 0, $edit = array()) {
   switch ($op) {
 
     case 'list':
@@ -105,7 +105,7 @@ function instapaper_block($op = 'list', $delta = 0, $edit = array()) {
       return $block;
   }    
 }
-
+*/
 
 /**
  * Implementation of hook_link().
