@@ -42,6 +42,7 @@ function instapaper_perm() {
   return array('administer instapaper', 'use instapaper');
 }
 
+
 /**
  * Implementation of hook_link().
  */
@@ -63,25 +64,6 @@ function instapaper_link($type, $object, $teaser = FALSE) {
       }
     }
   }
-  
-  // TODO: Perform logic to determine when link should appear
-/*
-  $links['instapaper_KEY1'] = array( // a regular link
-    'title' => t('TODO: Fill in link title'),
-    'href' => 'TODO: Fill in link path',
-    'attributes' => array('title' => t('TODO: Fill in link title attribute.')),  
-  );
-  $links['instapaper_KEY1'] = array( // a fake link that's just text
-    'title' => t('TODO: Fill in link title'),
-    'attributes' => array('title' => t('TODO: Fill in link title attribute.')),  
-  );
-  $links['instapaper_KEY1'] = array( // a link that's we're sending as HTML
-    'title' => t('TODO: Fill in link HTML'),
-    'html' => TRUE,
-  );
-*/
-  // OPTIONAL: Add additional links
-  
   return $links;
 }
 
@@ -91,26 +73,26 @@ function instapaper_link($type, $object, $teaser = FALSE) {
  */
 function instapaper_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
   switch ($op) {
-     case 'view':
-      // OPTIONAL: The node content is being assembled before rendering. The module
-      // may add elements $node->content prior to rendering. This hook will be
-      // called after hook_view().  The format of $node->content is the same as
-      // used by Forms API.
-      if (user_access('use instapaper')) {
-        if (!$teaser || variable_get('instapaper_teaser', 1)) {
-          if (variable_get('instapaper_instapaper_this_where', 'links') == 'nodes') {
-            if (in_array($node->type, variable_get('instapaper_instapaper_this_node_types', array()), TRUE)) {
-              // Create the instapaper element.
-              $instapaper = theme('instapaper', $node->title, url('node/'. $node->nid, array('absolute' => TRUE)));
-              $node->content['instapaper_instapaper_this'] = array(
-                '#value' => $instapaper,
-                '#weight' => variable_get('instapaper_instapaper_weight', 0),
-              );
-            }
+   case 'view':
+    // OPTIONAL: The node content is being assembled before rendering. The module
+    // may add elements $node->content prior to rendering. This hook will be
+    // called after hook_view().  The format of $node->content is the same as
+    // used by Forms API.
+    if (user_access('use instapaper')) {
+      if (!$teaser || variable_get('instapaper_teaser', 1)) {
+        if (variable_get('instapaper_instapaper_this_where', 'links') == 'nodes') {
+          if (in_array($node->type, variable_get('instapaper_instapaper_this_node_types', array()), TRUE)) {
+            // Create the instapaper element.
+            $instapaper = theme('instapaper', $node->title, url('node/'. $node->nid, array('absolute' => TRUE)));
+            $node->content['instapaper_instapaper_this'] = array(
+              '#value' => $instapaper,
+              '#weight' => variable_get('instapaper_instapaper_weight', 0),
+            );
           }
-        } 
-      }
-      break;
+        }
+      } 
+    }
+    break;
   }
 }
 
