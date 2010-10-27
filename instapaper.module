@@ -23,12 +23,14 @@ function instapaper_help($path, $arg) {
  */
 function instapaper_menu() { 
   // This is the minimum information you can provide for a menu item.
-  $items['admin/settings/instapaper'] = array(
+  $items['admin/settings/service_links/instapaper'] = array(
     'title' => t('Instapaper'),
+    'description' => t('Configuration options for the Instapaper service.')
     'page callback' => 'drupal_get_form',
     'page arguments' => array('instapaper_admin_settings'),
-    'access arguments' => array('administer instapaper'),
-    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('administer service links'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
     'file' => 'instapaper.admin.inc',
   );
   // more complex menu item
@@ -55,7 +57,7 @@ function instapaper_menu() {
  * Implementation of hook_perm().
  */
 function instapaper_perm() {
-  return array('administer instapaper', 'use instapaper');
+//  return array('administer instapaper', 'use instapaper');
 }
 
 
@@ -106,6 +108,24 @@ function instapaper_perm() {
   }    
 }
 */
+
+/**
+ * Implementation of hook_service_links().
+ *
+ * See the Service Links module.
+ */
+function sharethis_service_links() {
+    $links['instapaper'] = array(
+    'name' => 'Instapaper',
+    'description' => t('Read Later with Instapaper'),
+    'link' => 'http://sharethis.com/post?url=<encoded-url>&title=<encoded-title>',
+    'link' => 'http://www.instapaper.com/e2?url=<encoded-url>&title=<encoded-title>'
+    'icon' => drupal_get_path('module', 'instapaper') .'/images/' . variable_get('instapaper_icon', 'instapaper.png'),
+    'javascript' => drupal_get_path('module', 'sharethis') .'/sharethis.js',
+    'callback' => 'sharethis_service_links_callback',
+  );
+}
+
 
 /**
  * Implementation of hook_link().
