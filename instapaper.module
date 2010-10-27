@@ -204,6 +204,11 @@ function instapaper_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
       // may add elements $node->content prior to rendering. This hook will be
       // called after hook_view().  The format of $node->content is the same as
       // used by Forms API.
+      if (user_access('use instapaper')) {
+        if (!$teaser || variable_get('instapaper_teaser', 1)) {
+          
+        } 
+      }
       break;
   }
 }
