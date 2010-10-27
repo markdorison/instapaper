@@ -42,15 +42,13 @@ function instapaper_menu() {
  *
  * See the Service Links module.
  */
-function sharethis_service_links() {
+function instapaper_service_links() {
   $links['instapaper'] = array(
     'name' => 'Instapaper',
     'description' => t('Read Later with Instapaper'),
-    'link' => 'http://sharethis.com/post?url=<encoded-url>&title=<encoded-title>',
     'link' => 'http://www.instapaper.com/e2?url=<encoded-url>&title=<encoded-title>',
     'icon' => drupal_get_path('module', 'instapaper') .'/images/' . variable_get('instapaper_icon', 'instapaper.png'),
-    'javascript' => drupal_get_path('module', 'sharethis') .'/sharethis.js',
-    'callback' => 'sharethis_service_links_callback',
+//    'callback' => 'instapaper_service_links_callback',
   );
   return $links;
 }
