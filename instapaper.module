@@ -47,9 +47,11 @@ function instapaper_service_links() {
     'name' => 'Instapaper',
     'description' => t('Read Later with Instapaper'),
     // 'link' => 'http://www.instapaper.com/e2?url=<encoded-url>&title=<encoded-title>',
-    'link' => 'http://www.instapaper.com/hello2?u=<encoded-url>&t=<encoded-title>',
+     'link' => 'http://www.instapaper.com/hello2?u=<encoded-url>&t=<encoded-title>',
     'icon' => drupal_get_path('module', 'instapaper') .'/images/' . variable_get('instapaper_icon', 'instapaper.png'),
-    'callback' => 'instapaper_service_links_callback',
+    'javascript' => 'http://www.instapaper.com/javascript/embed2.js?ver=1.1',
+    //'callback' => 'instapaper_service_links_callback',
+    'callback' => 'instapaper_embed',
   );
   return $links;
 }
@@ -63,8 +65,8 @@ function instapaper_service_links_callback($service, $context) {
     $added = TRUE;
     
     $code = 'http://www.instapaper.com/hello2?u=<encoded-url>&t=<encoded-title>';
+
   }
-  dpm('callback');
   drupal_set_html_head('<script type="text/javascript" src="http://www.instapaper.com/javascript/embed2.js?ver=1.1"></script>');
 }
 
