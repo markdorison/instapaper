@@ -1,0 +1,4 @@
+; $Id$
+name = Instapaper
+description = Adds Instapaper functionality to posts
+core = 6.x
