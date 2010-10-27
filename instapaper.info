@@ -2,3 +2,6 @@
 name = Instapaper
 description = Adds Instapaper functionality to posts
 core = 6.x
+dependencies[] = service_links
+package = Service Links
+
