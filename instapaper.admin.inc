@@ -11,6 +11,7 @@
  */
  
 function instapaper_admin_settings() {
+/*
   $form['instapaper_teaser'] = array(
     '#type' => 'checkbox',
     '#title' => t('Display in teaser view'),
@@ -18,4 +19,5 @@ function instapaper_admin_settings() {
     '#default_value' => variable_get('instapaper_teaser', 1),
   );
   return system_settings_form($form);
+*/
 }

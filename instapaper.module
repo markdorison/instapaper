@@ -12,8 +12,6 @@ function instapaper_help($path, $arg) {
   switch ($path) {
     case 'admin/help#instapaper':
       return t('Provides functionality to interface with the Instapaper web service to allow offline reading.');
-    case 'admin/settings/service_links/instapaper':
-      return t('Below provides the settings for interfacing with the <a href="@instapaper">Instapaper</a> web service. You can add the \'Read Later\' link in the <a href="@services">services tab</a>', array('@instapaper' => 'http://instapaper.com', '@services' => url('admin/settings/service_links/services')));
   }
 }
 
@@ -23,6 +21,7 @@ function instapaper_help($path, $arg) {
  */
 function instapaper_menu() { 
   // This is the minimum information you can provide for a menu item.
+  dpm('TEST');
   $items['admin/settings/service_links/instapaper'] = array(
     'title' => t('Instapaper'),
     'description' => t('Configuration options for the Instapaper service.'),
@@ -44,30 +43,13 @@ function instapaper_menu() {
  */
 function instapaper_service_links() {
   $links['instapaper'] = array(
-    'name' => 'Instapaper',
+    'name' => 'Read Later',
     'description' => t('Read Later with Instapaper'),
     // 'link' => 'http://www.instapaper.com/e2?url=<encoded-url>&title=<encoded-title>',
-     'link' => 'http://www.instapaper.com/hello2?u=<encoded-url>&t=<encoded-title>',
+    'link' => 'http://www.instapaper.com/hello2?u=<encoded-url>&t=<encoded-title>',
     'icon' => drupal_get_path('module', 'instapaper') .'/images/' . variable_get('instapaper_icon', 'instapaper.png'),
-    'javascript' => 'http://www.instapaper.com/javascript/embed2.js?ver=1.1',
-    //'callback' => 'instapaper_service_links_callback',
-    'callback' => 'instapaper_embed',
+//    'javascript' => 'http://www.instapaper.com/javascript/embed2.js?ver=1.1',
+//    'callback' => 'instapaper_embed',
   );
   return $links;
 }
-
-/**
- * Callback function from Service Links.
- */
-function instapaper_service_links_callback($service, $context) {
-  static $added = FALSE;
-  if ($added == FALSE) {
-    $added = TRUE;
-    
-    $code = 'http://www.instapaper.com/hello2?u=<encoded-url>&t=<encoded-title>';
-
-  }
-  drupal_set_html_head('<script type="text/javascript" src="http://www.instapaper.com/javascript/embed2.js?ver=1.1"></script>');
-}
-
-
