@@ -20,8 +20,6 @@ function instapaper_help($path, $arg) {
  * Implementation of hook_menu().
  */
 function instapaper_menu() {
-  // This is the minimum information you can provide for a menu item.
-  dpm('TEST');
   $items['admin/settings/service_links/instapaper'] = array(
     'title' => t('Instapaper'),
     'description' => t('Configuration options for the Instapaper service.'),
