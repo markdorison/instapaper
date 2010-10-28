@@ -1,7 +1,7 @@
 <?php
 // $Id$
 /**
- * @file instapaper.module
+ * @file
  * Provides connection to Instapaper service
  */
 
@@ -19,7 +19,7 @@ function instapaper_help($path, $arg) {
 /**
  * Implementation of hook_menu().
  */
-function instapaper_menu() { 
+function instapaper_menu() {
   // This is the minimum information you can provide for a menu item.
   dpm('TEST');
   $items['admin/settings/service_links/instapaper'] = array(
